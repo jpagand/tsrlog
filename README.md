@@ -1,6 +1,6 @@
 # tsrlog
 
-A tool to help traversing a streaming log file easier.
+A tool to make working with streaming log files easier.
 
 ## Usage
 
