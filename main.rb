@@ -1,6 +1,4 @@
 require "thread"
-require "pp"
-require "active_support/all"
 
 def env
   envs = [
