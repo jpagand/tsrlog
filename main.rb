@@ -1,21 +1,24 @@
 require "thread"
 
 def env
-  envs = [
-    "development",
-    "staging",
-    "production",
-  ]
-  unless envs.include?(ARGV.first)
+  envs = {
+    "development" => "development",
+    "staging" => "staging",
+    "production" => "production",
+    "d" => "development",
+    "s" => "staging",
+    "p" => "production",
+  }
+  unless envs.key?(ARGV.first)
     STDERR.puts(<<-EOS)
 Usage: logit [#{envs.join('|')}]
     EOS
     exit 1
   end
-  env = ARGV[0]
+  envs.fetch(ARGV[0])
 end
 
-file_name = "logit #{env}.log"
+file_name = "logs_#{env}.log"
 
 Thread.new do
   `heroku logs -t -r #{env} >> "#{file_name}"; say fail`
